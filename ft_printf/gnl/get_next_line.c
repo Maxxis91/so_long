@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:41:27 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/28 22:01:25 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/03/30 23:22:49 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	*set_res(int fd, char **res)
 	int		nbytes;
 
 	nbytes = 1;
-	while (nbytes && !ft_strchr(*res, 10))
+	while (nbytes && !ft_g_strchr(*res, 10))
 	{
 		tmp = (char *)malloc(BUFFER_SIZE + 1);
 		if (!tmp)
@@ -27,7 +27,7 @@ static void	*set_res(int fd, char **res)
 		if (nbytes > 0)
 		{
 			*(tmp + nbytes) = '\0';
-			*res = ft_strjoin(*res, tmp);
+			*res = ft_g_strjoin(*res, tmp);
 		}
 		free(tmp);
 		if (nbytes == -1)
@@ -43,18 +43,18 @@ static char	*get_ret(char **res)
 	int		len;
 
 	ret = NULL;
-	if (ft_strchr(*res, 10))
+	if (ft_g_strchr(*res, 10))
 	{
-		len = ft_strchr(*res, 10) - *res + 1;
+		len = ft_g_strchr(*res, 10) - *res + 1;
 		tmp = *res;
-		ret = ft_substr(*res, 0, len);
-		*res = ft_substr(*res, len, ft_strlen(*res) - len);
+		ret = ft_g_substr(*res, 0, len);
+		*res = ft_g_substr(*res, len, ft_g_strlen(*res) - len);
 		free(tmp);
 	}
 	else
 	{
 		if (*res && **res)
-			ret = ft_substr(*res, 0, ft_strlen(*res));
+			ret = ft_g_substr(*res, 0, ft_g_strlen(*res));
 		free(*res);
 		*res = NULL;
 	}

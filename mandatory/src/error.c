@@ -6,11 +6,11 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 01:13:03 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/28 23:15:31 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:42:21 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 void	ft_error(int msg)
 {

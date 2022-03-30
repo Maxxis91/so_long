@@ -6,11 +6,11 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 21:27:18 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/28 22:03:37 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/03/30 23:24:50 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 static void	ft_count_lines(const char *path, t_map **ret)
 {
@@ -28,7 +28,7 @@ static void	ft_count_lines(const char *path, t_map **ret)
 		else
 		{
 			(*ret)->h++;
-			(*ret)->w = ft_strlen(tmp);
+			(*ret)->w = ft_g_strlen(tmp);
 			free(tmp);
 			tmp = NULL;
 		}
@@ -53,10 +53,10 @@ static void	ft_load_lines(const char *path, t_map **ret)
 	while (i < (*ret)->h)
 	{
 		tmp = get_next_line(fd);
-		res[i] = malloc(ft_strlen(tmp));
+		res[i] = malloc(ft_g_strlen(tmp));
 		if (!res[i])
 			ft_error(1);
-		ft_strlcpy(res[i], tmp, ft_strlen(tmp) + (i == (*ret)->h - 1));
+		ft_g_strlcpy(res[i], tmp, ft_g_strlen(tmp) + (i == (*ret)->h - 1));
 		i++;
 		free(tmp);
 		tmp = NULL;
@@ -93,14 +93,4 @@ void	ft_clear_map(t_map *map)
 	map->data = NULL;
 	free(map);
 	map = NULL;
-}
-
-void	ft_print_map(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	printf("w: %d; h: %d; c: %d\n", map->w, map->h, map->c);
-	while (i < map->h)
-		printf("|%s|\n", map->data[i++]);
 }

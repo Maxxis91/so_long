@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   validation_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:35:53 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/28 22:04:12 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/03/30 23:52:52 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long_bonus.h"
 
 static int	ft_check_shape(t_map *map)
 {
@@ -19,7 +19,7 @@ static int	ft_check_shape(t_map *map)
 	i = 0;
 	while (i < map->h)
 	{
-		if (ft_strlen(map->data[i++]) != map->w)
+		if (ft_g_strlen(map->data[i++]) != map->w)
 			return (1);
 	}
 	return (0);
@@ -60,7 +60,7 @@ static int	ft_check_char(t_map *map)
 		j = 0;
 		while (j < map->w)
 		{
-			if (!ft_strchr("01CEP", map->data[i][j++]))
+			if (!ft_g_strchr("01CEP", map->data[i][j++]))
 				return (1);
 		}
 		i++;

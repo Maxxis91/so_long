@@ -6,54 +6,52 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:46:11 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/30 17:26:13 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:42:46 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <mlx.h>
-#include "so_long.h"
+#include "../include/so_long.h"
 
-int	render_next_frame(void *data)
+int	render_next_frame(t_data *d)
 {
-	ft_render_map(data);
-//calculate player's position
-//remove collectibles when eaten
-//render movements counter
-//exit when !c && pos == exit
+	ft_render_map(d);
+	if (d->in_game)
+		mlx_string_put(d->m, d->w, d->l * (d->map->w / 2 - 1) + 3,
+			d->h * d->map->h * 0.5, 0x00FF0000, "Winner is you");
 	return (0);
 }
 
 int	handle_cross(t_map *map)
 {
-	ft_print_map(map);
 	ft_clear_map(map);
 	exit (0);
 }
 
-int	handle_keypress(int keysym, t_data *d)
+static void	assign_dir(int keysym, int *i, int *j)
 {
 	if (keysym == 13)
-	{
-		if(ft_move_up(d))
-			printf("Moves: %d\n", ++d->ctr);
-	}
+		*i = -1;
 	if (keysym == 0)
-	{
-		if (ft_move_left(d))
-			printf("Moves: %d\n", ++d->ctr);
-	}
+		*j = -1;
 	if (keysym == 1)
-	{
-		if (ft_move_down(d))
-			printf("Moves: %d\n", ++d->ctr);
-	}
+		*i = 1;
 	if (keysym == 2)
-	{
-		if (ft_move_right(d))
-			printf("Moves: %d\n", ++d->ctr);
-	}
+		*j = 1;
+	return ;
+}
+
+int	handle_keypress(int keysym, t_data *d)
+{
+	int	v[2];
+
+	v[0] = 0;
+	v[1] = 0;
+	assign_dir(keysym, &v[0], &v[1]);
+	if (!d->in_game)
+		ft_move(d, v);
 	if (keysym == 53)
 	{
 		mlx_destroy_window(d->m, d->w);
@@ -65,10 +63,11 @@ int	handle_keypress(int keysym, t_data *d)
 int	main(int argc, char **argv)
 {
 	t_data	d;
+
 	ft_load_init(&d, argc, argv[1]);
 	mlx_loop_hook(d.m, &render_next_frame, &d);
-	mlx_hook(d.w, 2, 0, &handle_keypress, &d); 
-	mlx_hook(d.w, 17, 0, &handle_cross, d.map); 
+	mlx_hook(d.w, 2, 0, &handle_keypress, &d);
+	mlx_hook(d.w, 17, 0, &handle_cross, d.map);
 	mlx_loop(d.m);
 	return (0);
 }

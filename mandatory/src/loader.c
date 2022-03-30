@@ -6,11 +6,11 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:46:57 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/30 17:18:32 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:42:32 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 static void	ft_init_map(t_data *d)
 {
@@ -20,17 +20,17 @@ static void	ft_init_map(t_data *d)
 	d->m = mlx_init();
 	if (!d->m)
 		ft_error(8);
-	d->W_path = "./img/Wall32.xpm";
-	d->S_path = "./img/Space32.xpm";
-	d->C_path = "./img/Dot32.xpm";
-	d->E_path = "./img/Exit32.xpm";
-	d->P_path = "./img/Icon32.xpm";
-	d->W = mlx_xpm_file_to_image(d->m, d->W_path, &(d->l), &(d->h));
-	d->S = mlx_xpm_file_to_image(d->m, d->S_path, &(d->l), &(d->h));
-	d->C = mlx_xpm_file_to_image(d->m, d->C_path, &(d->l), &(d->h));
-	d->E = mlx_xpm_file_to_image(d->m, d->E_path, &(d->l), &(d->h));
-	d->P = mlx_xpm_file_to_image(d->m, d->P_path, &(d->l), &(d->h));
-	d->in_game = 1;
+	d->w_path = "./img/Wall32.xpm";
+	d->s_path = "./img/Space32.xpm";
+	d->c_path = "./img/Dot32.xpm";
+	d->e_path = "./img/Exit32.xpm";
+	d->p_path = "./img/Icon32.xpm";
+	d->_w = mlx_xpm_file_to_image(d->m, d->w_path, &(d->l), &(d->h));
+	d->_s = mlx_xpm_file_to_image(d->m, d->s_path, &(d->l), &(d->h));
+	d->_c = mlx_xpm_file_to_image(d->m, d->c_path, &(d->l), &(d->h));
+	d->_e = mlx_xpm_file_to_image(d->m, d->e_path, &(d->l), &(d->h));
+	d->_p = mlx_xpm_file_to_image(d->m, d->p_path, &(d->l), &(d->h));
+	d->in_game = 0;
 	d->exit = 0;
 	w = d->l * d->map->w;
 	h = d->h * d->map->h;
@@ -50,20 +50,20 @@ static void	ft_put_tile(t_data *d, int i, int j)
 	if (d->map->data[i][j] == '1')
 	{
 		if (i && d->map->data[i - 1][j] == '1')
-			mlx_put_image_to_window(d->m, d->w, d->W, w, d->h * (i - 0.5));
-		mlx_put_image_to_window(d->m, d->w, d->W, w, h);
+			mlx_put_image_to_window(d->m, d->w, d->_w, w, d->h * (i - 0.5));
+		mlx_put_image_to_window(d->m, d->w, d->_w, w, h);
 	}
 	else
 	{
 		if (d->map->data[i][j] == 'E' || (d->map->data[i][j] == 'P' && d->exit))
-			mlx_put_image_to_window(d->m, d->w, d->E, w, h);
+			mlx_put_image_to_window(d->m, d->w, d->_e, w, h);
 		else
-			mlx_put_image_to_window(d->m, d->w, d->S, w, h);
+			mlx_put_image_to_window(d->m, d->w, d->_s, w, h);
 	}
 	if (d->map->data[i][j] == 'C')
-		mlx_put_image_to_window(d->m, d->w, d->C, d->l * j, d->h * i);
+		mlx_put_image_to_window(d->m, d->w, d->_c, d->l * j, d->h * i);
 	if (d->map->data[i][j] == 'P')
-		mlx_put_image_to_window(d->m, d->w, d->P, d->l * j, d->h * i);
+		mlx_put_image_to_window(d->m, d->w, d->_p, d->l * j, d->h * i);
 	return ;
 }
 
