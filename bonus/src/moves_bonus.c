@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:41:34 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/04/02 03:26:02 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 04:21:36 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,50 @@
 
 static void	ft_move_s(t_data *d, int i, int j, int v[])
 {
-	d->map->data[i + v[0]][j + v[1]] = 'P';
-	if (!d->exit)
-		d->map->data[i][j] = '0';
-	else
+	if (d->map->data[i + v[0]][j + v[1]] == '0')
 	{
-		d->map->data[i][j] = 'E';
-		d->exit--;
+		d->map->data[i + v[0]][j + v[1]] = 'P';
+		if (!d->exit)
+			d->map->data[i][j] = '0';
+		else
+		{
+			d->map->data[i][j] = 'E';
+			d->exit--;
+		}
+		++d->ctr;
 	}
-	ft_printf("Moves: %d\n", ++d->ctr);
 	return ;
 }
 
 static void	ft_move_c(t_data *d, int i, int j, int v[])
 {
-	d->map->data[i + v[0]][j + v[1]] = 'P';
-	if (!d->exit)
-		d->map->data[i][j] = '0';
-	else
+	if (d->map->data[i + v[0]][j + v[1]] == 'C')
 	{
-		d->map->data[i][j] = 'E';
-		d->exit--;
+		d->map->data[i + v[0]][j + v[1]] = 'P';
+		if (!d->exit)
+			d->map->data[i][j] = '0';
+		else
+		{
+			d->map->data[i][j] = 'E';
+			d->exit--;
+		}
+		d->map->c--;
+		++d->ctr;
 	}
-	d->map->c--;
-	ft_printf("Moves: %d\n", ++d->ctr);
 	return ;
 }
 
 static void	ft_move_e(t_data *d, int i, int j, int v[])
 {
-	d->exit++;
-	d->map->data[i + v[0]][j + v[1]] = 'P';
-	d->map->data[i][j] = '0';
-	ft_printf("Moves: %d\n", ++d->ctr);
-	if (!d->map->c)
-		d->in_game = 1;
+	if (d->map->data[i + v[0]][j + v[1]] == 'E')
+	{
+		d->exit++;
+		d->map->data[i + v[0]][j + v[1]] = 'P';
+		d->map->data[i][j] = '0';
+		++d->ctr;
+		if (!d->map->c)
+			d->in_game = 1;
+	}
 	return ;
 }
 
@@ -65,12 +74,10 @@ void	ft_move(t_data *d, int v[])
 		{
 			if (d->map->data[i][j] == 'P')
 			{
-				if (d->map->data[i + v[0]][j + v[1]] == '0')
-					ft_move_s(d, i, j, v);
-				if (d->map->data[i + v[0]][j + v[1]] == 'C')
-					ft_move_c(d, i, j, v);
-				if (d->map->data[i + v[0]][j + v[1]] == 'E')
-					ft_move_e(d, i, j, v);
+				//change player sprite here
+				ft_move_s(d, i, j, v);
+				ft_move_c(d, i, j, v);
+				ft_move_e(d, i, j, v);
 				return ;
 			}
 		}

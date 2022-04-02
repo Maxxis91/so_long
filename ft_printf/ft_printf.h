@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:31:56 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/30 23:41:08 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 04:13:10 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdarg.h>
 # include "libft/libft.h"
-# include "gnl/get_next_line.h"
 
 typedef struct s_flags
 {

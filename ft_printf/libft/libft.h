@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 17:09:01 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/17 20:40:27 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 04:13:02 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include "../gnl/get_next_line.h"
 
 # ifndef INT_MIN
 #  define INT_MIN -2147483648
@@ -39,6 +40,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
+char	*ft_strjoin_free2(char *s1, char *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 char	*ft_strncpy(char *dst, const char *src, size_t len);
