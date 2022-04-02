@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:41:34 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/04/02 04:21:36 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 05:35:27 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	ft_move_s(t_data *d, int i, int j, int v[])
 {
 	if (d->map->data[i + v[0]][j + v[1]] == '0')
 	{
+		free(d->cctr);
 		d->map->data[i + v[0]][j + v[1]] = 'P';
 		if (!d->exit)
 			d->map->data[i][j] = '0';
@@ -25,6 +26,7 @@ static void	ft_move_s(t_data *d, int i, int j, int v[])
 			d->exit--;
 		}
 		++d->ctr;
+		d->cctr = ft_strjoin_free2("Moves: ", ft_itoa(d->ctr));
 	}
 	return ;
 }
@@ -33,6 +35,7 @@ static void	ft_move_c(t_data *d, int i, int j, int v[])
 {
 	if (d->map->data[i + v[0]][j + v[1]] == 'C')
 	{
+		free(d->cctr);
 		d->map->data[i + v[0]][j + v[1]] = 'P';
 		if (!d->exit)
 			d->map->data[i][j] = '0';
@@ -43,6 +46,7 @@ static void	ft_move_c(t_data *d, int i, int j, int v[])
 		}
 		d->map->c--;
 		++d->ctr;
+		d->cctr = ft_strjoin_free2("Moves: ", ft_itoa(d->ctr));
 	}
 	return ;
 }
@@ -51,12 +55,26 @@ static void	ft_move_e(t_data *d, int i, int j, int v[])
 {
 	if (d->map->data[i + v[0]][j + v[1]] == 'E')
 	{
+		free(d->cctr);
 		d->exit++;
 		d->map->data[i + v[0]][j + v[1]] = 'P';
 		d->map->data[i][j] = '0';
 		++d->ctr;
+		d->cctr = ft_strjoin_free2("Moves: ", ft_itoa(d->ctr));
 		if (!d->map->c)
 			d->in_game = 1;
+	}
+	return ;
+}
+
+static void	ft_move_f(t_data *d, int i, int j, int v[])
+{
+	if (d->map->data[i + v[0]][j + v[1]] == 'F')
+	{
+		free(d->cctr);
+		++d->ctr;
+		d->cctr = ft_strjoin_free2("Moves: ", ft_itoa(d->ctr));
+		d->in_game = -1;
 	}
 	return ;
 }
@@ -74,10 +92,10 @@ void	ft_move(t_data *d, int v[])
 		{
 			if (d->map->data[i][j] == 'P')
 			{
-				//change player sprite here
 				ft_move_s(d, i, j, v);
 				ft_move_c(d, i, j, v);
 				ft_move_e(d, i, j, v);
+				ft_move_f(d, i, j, v);
 				return ;
 			}
 		}

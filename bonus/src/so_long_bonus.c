@@ -6,20 +6,17 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:46:11 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/04/02 04:15:48 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 05:34:33 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <mlx.h>
 #include "../include/so_long_bonus.h"
 
 int	render_next_frame(t_data *d)
 {
-	int	x;
-	int	y;
-
+	int		x;
+	int		y;
+	
 	ft_render_map(d);
 	x = d->l * (d->map->w - 3) / 2;
 	y = d->h * (d->map->h - 3) / 2;
@@ -28,8 +25,12 @@ int	render_next_frame(t_data *d)
 		d->_w = mlx_xpm_file_to_image(d->m, "./img/W96.xpm", &(d->l), &(d->h));
 		mlx_put_image_to_window(d->m, d->w, d->_w, x, y);
 	}
-	mlx_string_put(d->m, d->w, 32, 16, \
-		0x00FF0000, ft_strjoin_free2("Moves: ", ft_itoa(d->ctr)));
+	if (d->in_game == -1)
+	{
+		d->_w = mlx_xpm_file_to_image(d->m, "./img/F96.xpm", &(d->l), &(d->h));
+		mlx_put_image_to_window(d->m, d->w, d->_w, x, y);
+	}
+	mlx_string_put(d->m, d->w, 32, 16, 0x00FF0000, d->cctr);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 00:57:33 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/30 23:42:34 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 05:06:03 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int		ft_check_map(t_map **map, const char *path);
 void	ft_clear_map(t_map *map);
 void	ft_load_init(t_data *d, int argc, const char *path);
 void	ft_render_map(t_data *d);
-void	ft_render_objs(t_data *d);
 
 void	ft_move(t_data *d, int v[]);
 

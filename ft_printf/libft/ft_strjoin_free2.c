@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 04:08:17 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/04/02 04:08:44 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 05:28:38 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ char	*ft_strjoin_free2(char *s1, char *s2)
 		(void)ft_g_strlcpy(res + n, s2, len - n);
 	if (s2)
 		free(s2);
-	s1 = NULL;
+	s2 = NULL;
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:46:57 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/04/02 03:25:31 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 05:28:57 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ static void	ft_init_map(t_data *d)
 	d->s_path = "./img/Space32.xpm";
 	d->c_path = "./img/Dot32.xpm";
 	d->e_path = "./img/Exit32.xpm";
-	d->p_path = "./img/Icon32.xpm";
 	d->_w = mlx_xpm_file_to_image(d->m, d->w_path, &(d->l), &(d->h));
 	d->_s = mlx_xpm_file_to_image(d->m, d->s_path, &(d->l), &(d->h));
 	d->_c = mlx_xpm_file_to_image(d->m, d->c_path, &(d->l), &(d->h));
 	d->_e = mlx_xpm_file_to_image(d->m, d->e_path, &(d->l), &(d->h));
-	d->_p = mlx_xpm_file_to_image(d->m, d->p_path, &(d->l), &(d->h));
 	d->in_game = 0;
 	d->exit = 0;
 	w = d->l * d->map->w;
@@ -44,7 +42,9 @@ static void	ft_put_tile(t_data *d, int i, int j)
 {
 	int	w;
 	int	h;
+	int	k;
 
+	k = d->ctr % 4;
 	w = d->l * j;
 	h = d->h * i;
 	if (d->map->data[i][j] == '1')
@@ -63,7 +63,7 @@ static void	ft_put_tile(t_data *d, int i, int j)
 	if (d->map->data[i][j] == 'C')
 		mlx_put_image_to_window(d->m, d->w, d->_c, d->l * j, d->h * i);
 	if (d->map->data[i][j] == 'P')
-		mlx_put_image_to_window(d->m, d->w, d->_p, d->l * j, d->h * i);
+		mlx_put_image_to_window(d->m, d->w, d->_p[k], d->l * j, d->h * i);
 	return ;
 }
 
@@ -80,7 +80,10 @@ void	ft_render_map(t_data *d)
 		j = -1;
 		while (++j < d->map->w)
 		if (!d->in_game)
+		{
 			ft_put_tile(d, i, j);
+			ft_put_opponent(d, i, j);
+		}
 		else
 			mlx_put_image_to_window(d->m, d->w, d->_c, d->l * j, d->h * i);
 	}
@@ -92,5 +95,8 @@ void	ft_load_init(t_data *d, int argc, const char *path)
 		ft_error(9);
 	ft_error(ft_check_map(&(d->map), path));
 	ft_init_map(d);
+	ft_load_player(d);
+	ft_load_opponent(d);
 	d->ctr = 0;
+	d->cctr = ft_strjoin_free2("Moves: ", ft_itoa(d->ctr));
 }
