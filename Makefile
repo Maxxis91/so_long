@@ -6,7 +6,7 @@
 #    By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 17:52:53 by gmelissi          #+#    #+#              #
-#    Updated: 2022/03/30 23:55:28 by gmelissi         ###   ########.fr        #
+#    Updated: 2022/04/02 03:27:45 by gmelissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC =	./mandatory/src/so_long.c ./mandatory/src/map.c \
 		./mandatory/src/loader.c ./mandatory/src/moves.c
 BSRC =	./bonus/src/so_long_bonus.c ./bonus/src/map_bonus.c \
 		./bonus/src/validation_bonus.c ./bonus/src/error_bonus.c \
-		./bonus/src/loader_bonus.c ./mandatory/src/moves_bonus.c
+		./bonus/src/loader_bonus.c ./bonus/src/moves_bonus.c
 HDR =	./mandatory/include/so_long.h
 BHDR =	./bonus/include/so_long_bonus.h
 OBJ =	$(SRC:%.c=%.o)

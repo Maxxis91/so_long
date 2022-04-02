@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:46:11 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/30 23:52:46 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 03:26:16 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@
 
 int	render_next_frame(t_data *d)
 {
+	int	x;
+	int	y;
+
 	ft_render_map(d);
+	x = d->l * (d->map->w - 3) / 2;
+	y = d->h * (d->map->h - 3) / 2;
 	if (d->in_game)
-		mlx_string_put(d->m, d->w, d->l * (d->map->w / 2 - 1) + 3,
-			d->h * d->map->h * 0.5, 0x00FF0000, "Winner is you");
+	{
+		d->_w = mlx_xpm_file_to_image(d->m, "./img/W96.xpm", &(d->l), &(d->h));
+		mlx_put_image_to_window(d->m, d->w, d->_w, x, y);
+	}
 	return (0);
 }
 

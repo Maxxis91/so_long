@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:46:57 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/30 23:52:31 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 03:25:31 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,16 @@ void	ft_render_map(t_data *d)
 	int	j;
 
 	i = -1;
+	if (d->in_game)
+		d->_c = mlx_xpm_file_to_image(d->m, "./img/B32.xpm", &(d->l), &(d->h));
 	while (++i < d->map->h)
 	{
 		j = -1;
 		while (++j < d->map->w)
+		if (!d->in_game)
 			ft_put_tile(d, i, j);
+		else
+			mlx_put_image_to_window(d->m, d->w, d->_c, d->l * j, d->h * i);
 	}
 }
 

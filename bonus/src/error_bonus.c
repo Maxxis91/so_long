@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 01:13:03 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/03/30 23:52:26 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/02 03:25:13 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@ void	ft_error(int msg)
 
 	if (!msg)
 		return ;
-	if (msg == 9)
-		perror("Error\nMap path incorrect");
+	if (msg == 1)
+		perror("Error\nMap creation failed");
 	if (msg == 2)
 		perror("Error\nMap file open failed");
 	if (msg == 3)
 		perror("Error\nMap file is empty");
-	if (msg == 1)
-		perror("Error\nMap creation failed");
-	if (msg == 8)
-		perror("Error\nMLX init failed");
 	if (msg == 4)
 		perror("Error\nMap not rectangular");
 	if (msg == 5)
@@ -36,5 +32,9 @@ void	ft_error(int msg)
 		perror("Error\nMap has invalid character");
 	if (msg == 7)
 		perror("Error\nMap has wrong object count");
+	if (msg == 8)
+		perror("Error\nResources load failed");
+	if (msg == 9)
+		perror("Error\nMap path incorrect");
 	exit(EXIT_FAILURE);
 }
