@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 04:23:31 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/04/02 05:17:08 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/03 11:58:07 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_init_opponent(t_data *d)
 void	ft_load_opponent(t_data *d)
 {
 	int	i;
-	
+
 	ft_init_opponent(d);
 	d->o_path = (char **)malloc(sizeof(char *) * 4);
 	if (!d->o_path)
@@ -51,7 +51,7 @@ void	ft_load_opponent(t_data *d)
 void	ft_load_player(t_data *d)
 {
 	int	i;
-	
+
 	d->p_path = (char **)malloc(sizeof(char *) * 4);
 	if (!d->p_path)
 		ft_error(8);
@@ -71,7 +71,7 @@ void	ft_load_player(t_data *d)
 void	ft_put_opponent(t_data *d, int i, int j)
 {
 	int	k;
-	
+
 	k = d->ctr % 4;
 	if (d->map->data[i][j] == 'F')
 		mlx_put_image_to_window(d->m, d->w, d->_o[k], d->l * j, d->h * i);

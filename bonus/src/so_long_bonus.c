@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:46:11 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/04/02 05:34:33 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/03 11:58:12 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	render_next_frame(t_data *d)
 {
 	int		x;
 	int		y;
-	
+
 	ft_render_map(d);
 	x = d->l * (d->map->w - 3) / 2;
 	y = d->h * (d->map->h - 3) / 2;

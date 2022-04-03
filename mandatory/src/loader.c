@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:46:57 by gmelissi          #+#    #+#             */
-/*   Updated: 2022/04/02 03:16:06 by gmelissi         ###   ########.fr       */
+/*   Updated: 2022/04/03 11:57:06 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,12 @@ void	ft_render_map(t_data *d)
 	{
 		j = -1;
 		while (++j < d->map->w)
-		if (!d->in_game)
-			ft_put_tile(d, i, j);
-		else
-			mlx_put_image_to_window(d->m, d->w, d->_c, d->l * j, d->h * i);
+		{
+			if (!d->in_game)
+				ft_put_tile(d, i, j);
+			else
+				mlx_put_image_to_window(d->m, d->w, d->_c, d->l * j, d->h * i);
+		}
 	}
 }
 
